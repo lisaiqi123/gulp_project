@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>柱状图</title>
+    <script src="./js/echarts.min.js"></script>
+</head>
+
+<body>
+    <div id="main" style="width:900px;height:600px;"></div>
+    <script>
+        //基于准备好的dom,初始化echarts实例
+        var myChart = echarts.init(document.getElementById("main"));
+        //  制定图表的配置项和数据
+        var option = {
+            title: {
+                show: true,
+                text: "Echarts 入门示例",
+                subText: '销售表',
+                left: 0,
+                borderColor: 'red',
+                borderWidth: 2
+            },
+            //工具箱组建
+            toolbox: {
+                show: true,
+                feature: {
+                    //保存为图片
+                    saveAsImage: {
+                        show: true
+                    },
+                    //还原
+                    restore: {
+                        show: true
+                    },
+                    //数据展示
+                    dataView: {
+                        show: true
+                    },
+                    //区域缩放还原
+                    dataZoom: {
+                        show: true
+                    },
+                    //转换为折线图或者柱状图
+                    magicType: {
+                        type: ["line", "bar"]
+                    }
+                },
+            },
+            //图例
+            legend: {
+                data: ['销量', '产量']
+            },
+            //x轴
+            xAxis: {
+                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 45, 12, 10, 5],
+                //标记点组建
+                markPoint: {
+                    data: [{
+                        type: 'max',
+                        name: '最大值',
+                        symbol: "pin"
+                    }, {
+                        type: 'min',
+                        name: '最小值'
+                    }]
+                },
+                //标记线组建
+                markLine: {
+                    data: [{
+                        type: 'average',
+                        name: '平均值'
+                    }]
+                }
+            }, {
+                name: '产量',
+                type: 'line',
+                data: [5, 20, 45, 12, 10, 5]
+            }],
+            //弹窗组建
+            tooltip: {
+                trigger: 'item'
+            }
+        };
+        //使用刚配置项和数据显示在图中
+        myChart.setOption(option);
+    </script>
+</body>
+
+</html>

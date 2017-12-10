@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>饼状图</title>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/theme/dark.js"></script>
+</head>
+
+<body>
+    <div id="main" style="width:900px;height:600px;"></div>
+    <script>
+        //基于准备好的dom,初始化echarts实例
+        var myChart = echarts.init(document.getElementById("main"), "dark");
+        //  制定图表的配置项和数据
+        var option = {
+            title: {
+                text: "Echarts pie",
+                subtext: '销量',
+                x: 'center'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    //保存为图片
+                    saveAsImage: {
+                        show: true
+                    },
+                    //还原
+                    restore: {
+                        show: true
+                    },
+                    //数据展示
+                    dataView: {
+                        show: true
+                    },
+                },
+            },
+            //图例
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"] //可实现点击关闭不想看的项目
+            },
+            series: [{
+                name: '销量',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [{
+                    value: 335,
+                    name: '衬衫'
+                }, {
+                    value: 310,
+                    name: '羊毛衫'
+                }, {
+                    value: 234,
+                    name: '雪纺衫'
+                }, {
+                    value: 112,
+                    name: '裤子'
+                }, {
+                    value: 234,
+                    name: '高跟鞋'
+                }, {
+                    value: 455,
+                    name: '袜子'
+                }],
+            }]
+        };
+        //使用刚配置项和数据显示在图中
+        myChart.setOption(option);
+    </script>
+</body>
+
+</html>
